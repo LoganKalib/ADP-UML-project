@@ -1,9 +1,60 @@
 package za.ac.cput.domain;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class Lecturer {
+public class Lecturer extends Person{
 
-    private Person staffDetails = new Person();
-    private List<Subject> subsTaught = new ArrayList<Subject>();
+    private ConcurrentHashMap<Integer,Subject> subsTaught;
+
+    private int staffNumber;
+
+    public Lecturer(String name, String surname, String email, String password, ConcurrentHashMap<Integer,Subject> subsTaught, int staffNumber) {
+        super(name, surname, email, password);
+        this.subsTaught = subsTaught;
+        this.staffNumber = staffNumber;
+    }
+
+    public Lecturer() {
+    }
+
+    public ConcurrentHashMap<Integer,Subject> getSubsTaught() {
+        return subsTaught;
+    }
+
+    public void setSubsTaught(ConcurrentHashMap<Integer,Subject> subsTaught) {
+        this.subsTaught = subsTaught;
+    }
+
+    public int getStaffNumber() {
+        return staffNumber;
+    }
+
+    public void setStaffNumber(int staffNumber) {
+        this.staffNumber = staffNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Lecturer{" +
+                "subsTaught=" + subsTaught +
+                ", staffNumber='" + staffNumber + '\'' +
+                '}';
+    }
+
+    public int createMark(Subject subject, Mark mark, Integer key){
+        if(this.subsTaught.containsValue(subject)){
+            subject.getMarks().put(key,mark);
+            return 0;
+        }
+        return -1;
+    }
+
+    public int markStudent(Student student, Subject subject, Mark newMark, Mark oldMark, int key){
+        if(student.getRegCourse().getSubjects().containsValue(subject)){
+           student.getRegCourse().getSubjects().keySet(subject).getMappedValue().getMarks().replace(key,oldMark,newMark);
+           return 0;
+        }
+        return -1;
+    }
 }
