@@ -16,6 +16,12 @@ public class Course {
         this.subjects = subjects;
     }
 
+    public Course(Course course){
+        this.courseCode = course.courseCode;
+        this.courseName = course.courseName;
+        this.subjects = course.subjects;
+    }
+
     public Course() {
     }
 
@@ -53,11 +59,11 @@ public class Course {
     }
 
     public double calcTotalPrice(){
-        if(subjects == null){
+        if(this.subjects == null){
             return -1;
         }
 
-        double total =0;
+        double total = 0;
         for(int key: this.subjects.keySet()){
             total += this.subjects.get(key).getPrice();
         }
