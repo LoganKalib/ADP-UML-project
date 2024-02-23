@@ -51,11 +51,10 @@ public class Lecturer extends Person{
     }
 
     //this function needs to be changed, it currently updates the mark for all the students
-    public int markStudent(Student student, Subject subject, Mark newMark, Mark oldMark, int key){
-        if(student.getRegCourse().getSubjects().containsValue(subject)){
-           student.getRegCourse().getSubjects().keySet(subject).getMappedValue().getMarks().replace(key,oldMark,newMark);
-           return 0;
-        }
-        return -1;
-    }
+
+    /*public void markStudent(Student student, Subject subject, Mark newMark, Mark oldMark){
+        student.getRegCourse().getSubjects().keySet(subject).getMappedValue()
+                .getMarks().keySet(oldMark).getMappedValue().setTotalEarned(newMark.getTotalEarned());
+
+    }*/
 }

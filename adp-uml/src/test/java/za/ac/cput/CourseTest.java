@@ -45,5 +45,6 @@ public class CourseTest {
     void testMarks(){
         ConcurrentHashMap<Integer, Mark> marks1 = course1.getSubjects().get(1).getMarks();
         ConcurrentHashMap<Integer, Mark> marks2 = course2.getSubjects().get(1).getMarks();
+        assertNotEquals(marks1,marks2);
     }
 }
