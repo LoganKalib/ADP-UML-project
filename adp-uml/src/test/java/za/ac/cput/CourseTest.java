@@ -23,7 +23,7 @@ public class CourseTest {
 
     }
     @Test
-    void testNotEqual(){
+    void testNotEqualIdentity(){
         assertNotEquals(course1,course2);
 
     }
@@ -41,7 +41,7 @@ public class CourseTest {
     }
 
     @Test
-    @Disabled("disable untill marks are tested...")
+    @Disabled("disable until marks are tested...")
     void testMarks(){
         ConcurrentHashMap<Integer, Mark> marks1 = course1.getSubjects().get(1).getMarks();
         ConcurrentHashMap<Integer, Mark> marks2 = course2.getSubjects().get(1).getMarks();
