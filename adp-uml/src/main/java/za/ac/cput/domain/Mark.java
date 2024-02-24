@@ -64,4 +64,15 @@ public class Mark {
     public void setAssessmentType(String assessmentType) {
         this.assessmentType = assessmentType;
     }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Mark{" +
+                "percentage=" + percentage +
+                ", marksPossible=" + marksPossible +
+                ", marksReceived=" + marksReceived +
+                ", assessmentName='" + assessmentName + '\'' +
+                ", assessmentType='" + assessmentType + '\'' +
+                '}';
+    }
 }
