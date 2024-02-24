@@ -14,10 +14,22 @@ public class Subject {
         this.subjectName = subjectName;
         this.price = price;
     }
+    public Subject(String subjectCode, String subjectName, double price, ConcurrentHashMap<Integer,Mark> marks) {
+        this.subjectCode = subjectCode;
+        this.subjectName = subjectName;
+        this.price = price;
+        this.marks = marks;
+    }
     public Subject(String subjectCode, String subjectName, double price) {
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
         this.price = price;
+    }
+    public Subject(Subject subject) {
+        this.subjectCode = subject.getSubjectCode();
+        this.subjectName = subject.subjectName;
+        this.price = subject.getPrice();
+        this.marks = subject.getMarks();
     }
 
     public Subject() {
