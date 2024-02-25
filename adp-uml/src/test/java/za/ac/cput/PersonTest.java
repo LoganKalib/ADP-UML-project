@@ -3,22 +3,21 @@ package za.ac.cput;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-import org.junit.jupiter.api.condition.DisabledIf;
 import za.ac.cput.domain.Person;
 
 import static org.junit.jupiter.api.Assertions.*;
 /* Sheldon Luke Arendse
     221190384
  */
-class PersonTest { ;
-    private final Person person1 = new Person("Sheldon", "Arendse", "sheldon.arendse@gmail.com", "shhPwd@7");
+class PersonTest {
+    private final Person person1 = new Person("Sheldon", "Arendse", "sheldon.arendse@gmail.com", "shhPwd#7");
     private final Person person2 = person1;
     private final Person person3 = new Person("Logan", "Coghill", "logan.coghill@hotmail.com", "wh01sLog@n");
 
     // Creating a test method to fail
     @Test
-    void testForFailure() {
-        assertNull(person1, "is not Null");
+    void testExpectingFailure() {
+        assertNull(person1, "Person1 is not Null");
     }
 
     // Disabling this test method because it will fail
