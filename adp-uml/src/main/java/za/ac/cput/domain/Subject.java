@@ -14,6 +14,11 @@ public class Subject {
         this.subjectName = subjectName;
         this.price = price;
     }
+
+    public Subject(Subject subject){
+        this.marks = subject.getMarks();
+
+    }
     public Subject(String subjectCode, String subjectName, double price) {
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
