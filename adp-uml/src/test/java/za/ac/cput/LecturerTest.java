@@ -37,7 +37,7 @@ public class LecturerTest {
     // Failing test to demonstrate assertFalse
     @Test
     void failingTest() {
-        assertFalse(lecturer1 == lecturer2); // Expecting lecturer1 and lecturer2 to be different objects
+        assertNotSame(lecturer1, lecturer2); // Expecting lecturer1 and lecturer2 to be different objects
     }
 
     // Test for performance with a timeout
