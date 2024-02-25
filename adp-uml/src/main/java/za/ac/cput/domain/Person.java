@@ -1,18 +1,26 @@
 package za.ac.cput.domain;
-
+/* Sheldon Luke Arendse
+    221190384
+ */
 public class Person {
 
     private String name, surname, email, password;
-
-    public Person() {
-
-    }
 
     public Person(String name, String surname, String email, String password) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
+    }
+
+    public Person(Person person) {
+        this.name = person.name;
+        this.surname = person.surname;
+        this.email = person.email;
+        this.password = person.password;
+    }
+
+    public Person() {
     }
 
     public String getName() {
