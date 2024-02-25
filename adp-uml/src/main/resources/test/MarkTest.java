@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.BeforeAll;
 import za.ac.cput.domain.Mark;
 
+import java.util.concurrent.TimeoutException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MarkTest {
@@ -20,7 +22,7 @@ public class MarkTest {
 
     @Test
     void testEqual(){
-        assertEquals(mark1, mark3);
+        assertEquals(mark1, mark2);
     }
 
     @Test
@@ -35,7 +37,7 @@ public class MarkTest {
 
     @Test
     @Timeout(1)
-    void testMarks() throws InterruptedException {
+    void testMarks() throws TimeoutException, InterruptedException {
         Thread.sleep(1001);
     }
 
