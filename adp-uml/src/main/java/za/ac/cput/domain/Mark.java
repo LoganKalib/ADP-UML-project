@@ -1,79 +1,86 @@
 package za.ac.cput.domain;
 
 public class Mark {
-    private Double percentage;
-    private Integer marksPossible;
-    private Integer marksReceived;
-    private String assessmentName;
-    private String assessmentType;
+
+    private String type;
+    private float maxMark;
+    private float totalEarned = 0;
+    private float percntWeight;
+    private float percntEarned;
+
+    public Mark(String type, float maxMark, float totalEarned, float percntWeight) {
+        this.type = type;
+        this.maxMark = maxMark;
+        this.totalEarned = totalEarned;
+        this.percntWeight = percntWeight;
+        this.setPercntEarned(this.maxMark,this.totalEarned);
+
+    }
+    public Mark(String type, float maxMark, float percntWeight) {
+        this.type = type;
+        this.maxMark = maxMark;
+        this.percntWeight = percntWeight;
+        this.setPercntEarned(this.maxMark,this.totalEarned);
+
+    }
 
     public Mark() {
     }
 
-    public Mark(Integer marksPossible, String assessmentName, String assessmentType) {
-        this.marksPossible = marksPossible;
-        this.assessmentName = assessmentName;
-        this.assessmentType = assessmentType;
+    public String getType() {
+        return type;
     }
 
-    public Mark(Integer marksPossible, Integer marksReceived, String assessmentName, String assessmentType) {
-        this.marksPossible = marksPossible;
-        this.marksReceived = marksReceived;
-        this.assessmentName = assessmentName;
-        this.assessmentType = assessmentType;
-        percentage = marksReceived.doubleValue()/marksPossible.doubleValue() * 100;
-
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Double getPercentage() {
-        if(marksPossible != null && marksReceived != null){
-            percentage = marksReceived.doubleValue()/marksPossible.doubleValue() * 100;
-            return percentage;
-        }
-        return null;
+    public float getMaxMark() {
+        return maxMark;
     }
 
-    public Integer getMarksPossible() {
-        return marksPossible;
+    public void setMaxMark(float maxMark) {
+        this.maxMark = maxMark;
     }
 
-    public void setMarksPossible(int marksPossible) {
-        this.marksPossible = marksPossible;
+    public float getTotalEarned() {
+        return totalEarned;
     }
 
-    public Integer getMarksReceived() {
-        return marksReceived;
+    public void setTotalEarned(float totalEarned) {
+        this.totalEarned = totalEarned;
     }
 
-    public void setMarksReceived(Integer marksReceived) {
-        percentage = marksReceived.doubleValue()/this.marksPossible.doubleValue() * 100;
-        this.marksReceived = marksReceived;
+    public float getPercntWeight() {
+        return percntWeight;
     }
 
-    public String getAssessmentName() {
-        return assessmentName;
+    public void setPercntWeight(float percntWeight) {
+        this.percntWeight = percntWeight;
     }
 
-    public void setAssessmentName(String assessmentName) {
-        this.assessmentName = assessmentName;
+    public float getPercntEarned() {
+        return percntEarned;
     }
 
-    public String getAssessmentType() {
-        return assessmentType;
+    public void setPercntEarned(float maxMark, float totalEarned) {
+        this.percntEarned = totalEarned / maxMark *100f;
     }
 
-    public void setAssessmentType(String assessmentType) {
-        this.assessmentType = assessmentType;
-    }
-
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Mark{" +
-                "percentage=" + percentage +
-                ", marksPossible=" + marksPossible +
-                ", marksReceived=" + marksReceived +
-                ", assessmentName='" + assessmentName + '\'' +
-                ", assessmentType='" + assessmentType + '\'' +
+                "type='" + type + '\'' +
+                ", maxMark=" + maxMark +
+                ", totalEarned=" + totalEarned +
+                ", percntWeight=" + percntWeight +
+                ", percntEarned=" + percntEarned +
                 '}';
     }
+
+    public float calcWeightPercnt(){
+        return this.percntEarned * this.percntWeight;
+    }
+
+
 }

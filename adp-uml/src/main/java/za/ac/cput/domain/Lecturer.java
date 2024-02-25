@@ -1,63 +1,60 @@
 package za.ac.cput.domain;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class Lecturer extends Person {
+public class Lecturer extends Person{
 
-    private int employeeNumber;
-    private Subject subject;
-    private Person staffDetails = new Person();
-    private List<Subject> subsTaught = new ArrayList<Subject>();
+    private ConcurrentHashMap<Integer,Subject> subsTaught;
 
+    private int staffNumber;
 
-    public Lecturer(String name, String surname, String email, String password, int employeeNumber, Subject subject) {
+    public Lecturer(String name, String surname, String email, String password, ConcurrentHashMap<Integer,Subject> subsTaught, int staffNumber) {
         super(name, surname, email, password);
-        this.employeeNumber = employeeNumber;
-        this.subject = subject;
+        this.subsTaught = subsTaught;
+        this.staffNumber = staffNumber;
     }
 
-        public int getEmployeeNumber() {
-        return employeeNumber;
+    public Lecturer() {
     }
 
-    public void setEmployeeNumber(int employeeNumber) {
-        this.employeeNumber = employeeNumber;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
-
-    public Person getStaffDetails() {
-        return staffDetails;
-    }
-
-    public void setStaffDetails(Person staffDetails) {
-        this.staffDetails = staffDetails;
-    }
-
-    public List<Subject> getSubsTaught() {
+    public ConcurrentHashMap<Integer,Subject> getSubsTaught() {
         return subsTaught;
     }
 
-    public void setSubsTaught(List<Subject> subsTaught) {
+    public void setSubsTaught(ConcurrentHashMap<Integer,Subject> subsTaught) {
         this.subsTaught = subsTaught;
     }
 
-    @java.lang.Override
+    public int getStaffNumber() {
+        return staffNumber;
+    }
+
+    public void setStaffNumber(int staffNumber) {
+        this.staffNumber = staffNumber;
+    }
+
+    @Override
     public String toString() {
         return "Lecturer{" +
-                "employeeNumber=" + employeeNumber +
-                ", subject=" + subject +
-                ", staffDetails=" + staffDetails +
-                ", subsTaught=" + subsTaught +
+                "subsTaught=" + subsTaught +
+                ", staffNumber='" + staffNumber + '\'' +
                 '}';
     }
-}
 
-
+    public int createMark(Subject subject, Mark mark, Integer key){
+        if(this.subsTaught.containsValue(subject)){
+            subject.getMarks().put(key,mark);
+            return 0;
+        }
+        return -1;
     }
+
+    //this function needs to be changed, it currently updates the mark for all the students
+
+    /*public void markStudent(Student student, Subject subject, Mark newMark, Mark oldMark){
+        student.getRegCourse().getSubjects().keySet(subject).getMappedValue()
+                .getMarks().keySet(oldMark).getMappedValue().setTotalEarned(newMark.getTotalEarned());
+
+    }*/
+}
