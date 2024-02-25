@@ -1,3 +1,5 @@
+package za.ac.cput;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
@@ -13,9 +15,9 @@ public class MarkTest {
 
     @BeforeAll
     static void setUp(){
-        mark1 = new Mark(50, 40, "ADP June Exam", "Test");
+        mark1 = new Mark("Test", 40, 10);
         mark2 = mark1;
-        mark3 = new Mark(50, 40, "ADP June Exam", "Test");
+        mark3 = new Mark("Assignment", 40, 32, 30);
     }
 
     @Test
@@ -42,7 +44,7 @@ public class MarkTest {
     @Test
     @Disabled
     void testDisabled() {
-        mark1 = new Mark(70, "ITS Exam", "Test");
+        mark1 = new Mark("Test", 200, 30);
     }
 
 

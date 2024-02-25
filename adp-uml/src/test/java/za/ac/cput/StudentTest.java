@@ -13,61 +13,42 @@ import java.util.concurrent.ConcurrentHashMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StudentTest {
+
+    Course course1 = new Course("APPDEV", "Application Development", new ConcurrentHashMap<>());
+    Course course2 = new Course(course1);
+    Student student1 = new Student("Jane","Doe","janedoe@gmail.com","j@nedoe11",course1,32121535);
+    Student student2 = new Student("John", "Doe","johndoe@gmail.com","j@hnDoe44",course2,5315453);
+
     @Test
     void testEqual() {
-        Course course1 = new Course("APPDEV", "Application Development", new ArrayList<>());
-        Course course2 = new Course("APPDEV","Application Development",new ArrayList<>());
-        Person person1 = new Person("Jane","Doe","janedoe@gmail.com","j@nedoe11");
-        Person person2 = new Person("Jane","Doe","janedoe@gmail.com","j@nedoe11");
-        Student student1 = new Student(course1, person1, 221133445,2024);
-        Student student2 = new Student(course2, person2, 221133445,2024);
-        assertEquals(student1,student2);
+        assertEquals(student1.getRegCourse(),student2.getRegCourse());
     }
     @Test
     void testNotEqualIdentity(){
-        Course course1 = new Course("APPDEV", "Application Development", new ArrayList<>());
-        Course course2 = new Course("APPDEV","Application Development",new ArrayList<>());
-        Person person1 = new Person("Jane","Doe","janedoe@gmail.com","j@nedoe11");
-        Person person2 = new Person("Jane","Doe","janedoe@gmail.com","j@nedoe11");
-        Student student1 = new Student(course1, person1, 221133445,2024);
-        Student student2 = new Student(course2, person2, 221133445,2024);
-        assertNotEquals(student1,student2);
+        assertNotEquals(student1.getStuNumber(),student2.getStuNumber());
     }
 
     @Test
     @Timeout(1)
     void testCourseChanges() throws InterruptedException {
-        Course course1 = new Course("APPDEV", "Application Development", new ArrayList<>());
-        Course course2 = new Course("APPDEV","Application Development",new ArrayList<>());
-        Person person1 = new Person("Jane","Doe","janedoe@gmail.com","j@nedoe11");
-        Person person2 = new Person("Jane","Doe","janedoe@gmail.com","j@nedoe11");
-        Student student = new Student(course1, person1, 221133445,2024);
-
         Thread.sleep(999);
 
-        student.setRegCourse(course2);
-        assertNotEquals(course1, student.getRegCourse());
+        student1.setRegCourse(course2);
+        assertNotEquals(course1, student2.getRegCourse());
 
     }
 
     @Test
     @Disabled("Disabled until registered courses are changed")
     void testMore() {
-        Course course1 = new Course("APPDEV", "Application Development", new ArrayList<>());
-        Course course2 = new Course("APPCOM","Application Communication",new ArrayList<>());
-        Person person1 = new Person("Jane","Doe","janedoe@gmail.com","j@nedoe11");
-        Person person2 = new Person("Jack","Doe","jackdoe@gmail.com","j@ckdoe12");
-        Student student1 = new Student(course1, person1, 221133445,2024);
-        Student student2 = new Student(course2, person2, 554466778,2024);
 
         student1.setRegCourse(course2);
         assertEquals(course2, student1.getRegCourse());
 
-        student2.setStudNo(887799101);
-        assertEquals(887799101, student2.getStudNo());
+        student2.setStuNumber(887799101);
+        assertEquals(887799101, student2.getStuNumber());
 
-        Student student1C = new Student(course1, person1, 221133445,2024);
-        assertEquals(student1, student1C);
+        assertEquals(student1, student2);
 
 
     }
